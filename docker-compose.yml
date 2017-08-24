@@ -1,4 +1,6 @@
 version: '3.3'
+volumes:
+  sample.db.volume:
 services:
   sample.app:
     container_name: sample.app
@@ -9,3 +11,12 @@ services:
     command: bash -c 'npm install && npm start'
     ports:
       - "3000:3000"
+  sample.db:
+    container_name: sample.db
+    image: postgres:9.6.4
+    volumes:
+      - sample.db.volume:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=sample
