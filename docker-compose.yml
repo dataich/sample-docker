@@ -1,0 +1,11 @@
+version: '3.3'
+services:
+  sample.app:
+    container_name: sample.app
+    image: node:8.4.0
+    volumes:
+      - ./app:/root/app
+    working_dir: /root/app
+    command: bash -c 'npm install && npm start'
+    ports:
+      - "3000:3000"
